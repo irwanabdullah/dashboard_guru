@@ -1,165 +1,182 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Guru - SMPN 13 Makassar</title>
-	<link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/education.png">
     
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3429/3429433.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
+        :root { --transition-speed: 0.3s; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-            color: #334155;
+            background-color: var(--bs-body-bg);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
+            background-color: var(--bs-body-bg);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .dashboard-header {
-            padding: 40px 0;
+            padding: 60px 0;
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 40px;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .service-card {
             border: none;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: var(--bs-secondary-bg);
+            height: 100%;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+            outline: 2px solid #3b82f6;
         }
 
         .icon-box {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            width: 65px; height: 65px;
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; margin-bottom: 25px;
         }
 
-        .service-card:hover .icon-box {
-            transform: scale(1.1);
+        .theme-switch {
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
 
-        /* Varian Warna Ikon */
-        .bg-light-blue { background-color: #e0f2fe; color: #0369a1; }
-        .bg-light-purple { background-color: #f3e8ff; color: #7e22ce; }
-        .bg-light-green { background-color: #dcfce7; color: #15803d; }
-        .bg-light-orange { background-color: #ffedd5; color: #c2410c; }
+        [data-bs-theme="dark"] .theme-switch { background: rgba(255,255,255,0.1); }
 
-        .card-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .card-text {
-            font-size: 0.9rem;
-            color: #64748b;
-        }
+        .stretched-link::after { border-radius: 20px; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold text-primary" href="#">SMPN 13 MAKASSAR</a>
-        <div class="ms-auto">
-            <span class="text-muted me-3">Halo, Ibu/Bapak Guru</span>
-            <img src="https://ui-avatars.com/api/?name=Guru+SMP&background=0D8ABC&color=fff" class="rounded-circle" width="35" alt="Profile">
+        <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="#">
+            <img src="https://cdn-icons-png.flaticon.com/512/3429/3429433.png" width="30" class="me-2">
+            SMPN 13 MAKASSAR
+        </a>
+        <div class="ms-auto d-flex align-items-center">
+            <div class="theme-switch me-3" id="themeToggler" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+            <img src="https://ui-avatars.com/api/?name=Guru+SMP&background=1e3a8a&color=fff" class="rounded-circle border" width="38">
         </div>
     </div>
 </nav>
 
 <header class="dashboard-header animate__animated animate__fadeIn">
     <div class="container text-center">
-        <h1 class="fw-bold">Layanan Guru Digital</h1>
-        <p class="lead opacity-75">Akses cepat semua kebutuhan administrasi dan pengajaran Anda.</p>
+        <h1 class="fw-bold display-6">Layanan Digital Pendidik</h1>
+        <p class="lead opacity-75">Manajemen Administrasi & Data Mandiri Guru</p>
     </div>
 </header>
 
-<div class="container">
+<div class="container mb-5">
     <div class="row g-4">
         <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-            <div class="card service-card h-100 p-4">
-                <div class="icon-box bg-light-blue">
+            <div class="card service-card p-4 position-relative border-0 shadow-sm">
+                <div class="icon-box shadow-sm" style="background: #e0f2fe; color: #0369a1;">
                     <i class="fa-solid fa-calendar-check"></i>
                 </div>
-                <h5 class="card-title">Presensi Kehadiran</h5>
-                <p class="card-text">Catat kehadiran harian dan lihat rekap bulanan secara real-time.</p>
+                <h5 class="fw-bold">Presensi</h5>
+                <p class="text-muted small">Kelola kehadiran harian dan rekap otomatis pendidik.</p>
                 <a href="https://irwanabdullah.github.io/absenguru/" class="stretched-link"></a>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-            <div class="card service-card h-100 p-4">
-                <div class="icon-box bg-light-purple">
+            <div class="card service-card p-4 position-relative border-0 shadow-sm">
+                <div class="icon-box shadow-sm" style="background: #f3e8ff; color: #7e22ce;">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h5 class="card-title">Input Nilai & E-Rapor</h5>
-                <p class="card-text">Kelola nilai harian siswa, UTS dan Nilai Akhir.</p>
+                <h5 class="fw-bold">E-Nilai</h5>
+                <p class="text-muted small">Input nilai harian, UTS dan Nilai Akhir.</p>
                 <a href="https://irwanabdullah.github.io/under_maintenence/" class="stretched-link"></a>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-            <div class="card service-card h-100 p-4">
-                <div class="icon-box bg-light-green">
+            <div class="card service-card p-4 position-relative border-0 shadow-sm">
+                <div class="icon-box shadow-sm" style="background: #dcfce7; color: #15803d;">
                     <i class="fa-solid fa-file-signature"></i>
                 </div>
-                <h5 class="card-title">Pengajuan Izin</h5>
-                <p class="card-text">Ajukan cuti atau izin sakit dengan sistem approval terintegrasi.</p>
+                <h5 class="fw-bold">Perizinan</h5>
+                <p class="text-muted small">Pengajuan cuti, izin sakit, dan dinas luar secara online.</p>
                 <a href="https://irwanabdullah.github.io/under_maintenence/" class="stretched-link"></a>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-            <div class="card service-card h-100 p-4">
-                <div class="icon-box bg-light-orange">
-                    <i class="fa-solid fa-book-open-reader"></i>
+            <div class="card service-card p-4 position-relative border-0 shadow-sm">
+                <div class="icon-box shadow-sm" style="background: #ffedd5; color: #c2410c;">
+                    <i class="fa-solid fa-user-gear"></i>
                 </div>
-                <h5 class="card-title">Update data mandiri</h5>
-                <p class="card-text">Akses untuk melakukan perubahan data mandiri dan Link E-Kinerja.</p>
+                <h5 class="fw-bold">Data Mandiri</h5>
+                <p class="text-muted small">Perbarui profil, kepangkatan, dan data kepegawaian Anda.</p>
                 <a href="https://irwanabdullah.github.io/portalguru/" class="stretched-link"></a>
             </div>
         </div>
     </div>
 </div>
 
-<footer class="text-center mt-5 py-4 text-muted border-top">
-    <p>&copy; <span id="currentYear"></span> SMPN 13 Makassar - Dashboard Layanan Guru</p>
+<footer class="text-center py-4 mt-auto border-top bg-body-tertiary">
+    <div class="container">
+        <p class="text-muted mb-0">&copy; <span id="currentYear"></span> SMPN 13 Makassar</p>
+    </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-    // Mengambil elemen span berdasarkan ID
-    const yearSpan = document.getElementById('currentYear');
-    
-    // Mengisi span dengan tahun saat ini secara otomatis
-    const currentYear = new Date().getFullYear();
-    yearSpan.textContent = currentYear;
-</script>
+    // Tahun Dinamis
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+    // Toggle Theme (Dark Mode)
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.querySelector('#themeToggler i');
+        
+        if (html.getAttribute('data-bs-theme') === 'light') {
+            html.setAttribute('data-bs-theme', 'dark');
+            icon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.setAttribute('data-bs-theme', 'light');
+            icon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Load saved theme
+    window.onload = () => {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            document.querySelector('#themeToggler i').classList.replace('fa-moon', 'fa-sun');
+        }
+    };
+</script>
 </body>
 </html>
