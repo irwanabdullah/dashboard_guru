@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Guru - SMPN 13 Makassar</title>
+	<link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/education.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #334155;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .dashboard-header {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            border: none;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .icon-box {
+            transform: scale(1.1);
+        }
+
+        /* Varian Warna Ikon */
+        .bg-light-blue { background-color: #e0f2fe; color: #0369a1; }
+        .bg-light-purple { background-color: #f3e8ff; color: #7e22ce; }
+        .bg-light-green { background-color: #dcfce7; color: #15803d; }
+        .bg-light-orange { background-color: #ffedd5; color: #c2410c; }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="#">SMPN 13 MAKASSAR</a>
+        <div class="ms-auto">
+            <span class="text-muted me-3">Halo, Ibu/Bapak Guru</span>
+            <img src="https://ui-avatars.com/api/?name=Guru+SMP&background=0D8ABC&color=fff" class="rounded-circle" width="35" alt="Profile">
+        </div>
+    </div>
+</nav>
+
+<header class="dashboard-header animate__animated animate__fadeIn">
+    <div class="container text-center">
+        <h1 class="fw-bold">Layanan Guru Digital</h1>
+        <p class="lead opacity-75">Akses cepat semua kebutuhan administrasi dan pengajaran Anda.</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+            <div class="card service-card h-100 p-4">
+                <div class="icon-box bg-light-blue">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h5 class="card-title">Presensi Kehadiran</h5>
+                <p class="card-text">Catat kehadiran harian dan lihat rekap bulanan secara real-time.</p>
+                <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+            <div class="card service-card h-100 p-4">
+                <div class="icon-box bg-light-purple">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h5 class="card-title">Input Nilai & E-Rapor</h5>
+                <p class="card-text">Kelola nilai harian siswa, UTS dan Nilai Akhir.</p>
+                <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+            <div class="card service-card h-100 p-4">
+                <div class="icon-box bg-light-green">
+                    <i class="fa-solid fa-file-signature"></i>
+                </div>
+                <h5 class="card-title">Pengajuan Izin</h5>
+                <p class="card-text">Ajukan cuti atau izin sakit dengan sistem approval terintegrasi.</p>
+                <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+            <div class="card service-card h-100 p-4">
+                <div class="icon-box bg-light-orange">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                </div>
+                <h5 class="card-title">Update data mandiri</h5>
+                <p class="card-text">Akses untuk melakukan perubahan data mandiri dan Link E-Kinerja.</p>
+                <a href="#" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center mt-5 py-4 text-muted border-top">
+    <p>&copy; <span id="currentYear"></span> SMPN 13 Makassar - Dashboard Layanan Guru</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Mengambil elemen span berdasarkan ID
+    const yearSpan = document.getElementById('currentYear');
+    
+    // Mengisi span dengan tahun saat ini secara otomatis
+    const currentYear = new Date().getFullYear();
+    yearSpan.textContent = currentYear;
+</script>
+
+</body>
+</html>
